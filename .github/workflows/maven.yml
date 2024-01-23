@@ -47,7 +47,7 @@ jobs:
         env:
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
         with:
-            args: --sarif-file-output=snyk.sarif
+            args: --sarif-file-output=snyk.sarif --file=./Orso.Arpa.Api.sln --severity-threshold=medium
       - name: Debug
         run: |
          echo "GitHub token: ${{ secrets.GITHUB_TOKEN }}"
