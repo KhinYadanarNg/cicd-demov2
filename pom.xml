@@ -18,7 +18,7 @@
 		<java.version>17</java.version>
 		<sonar.organization>khinyadanarng</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io/</sonar.host.url>
- 
+
 	</properties>
 	<dependencies>
 		<dependency>
@@ -77,11 +77,16 @@
 					</execution>
 				</executions>
 			</plugin>
-			  <plugin>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>3.7.0.1746</version>
-        </plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.7.0.1746</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.3.0</version>
+			</plugin>
 		</plugins>
 	</build>
 
