@@ -38,10 +38,14 @@ jobs:
 
       - name: Check out code
         uses: actions/checkout@v4
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
+      - name: Add execute permission
+        run: chmod +x ./mvnw
+      - name: Run mvnw script
+        run: bash ./mvnw
+      - name: Run mvnw script
+        run: ./mvnw -d
+      - name: Change ownership
+        run: sudo chown -R runner:runner .
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/dotnet@master 
         continue-on-error: true # To make sure that SARIF upload gets called
