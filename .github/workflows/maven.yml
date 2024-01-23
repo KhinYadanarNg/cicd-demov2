@@ -40,10 +40,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Add execute permission
         run: chmod +x ./mvnw
-      - name: Run mvnw script
-        run: bash ./mvnw
-      - name: Run mvnw script
-        run: ./mvnw -d
+      # - name: Run mvnw script
+      #   run: bash ./mvnw
+      # - name: Run mvnw script
+      #   run: ./mvnw -d
       - name: Change ownership
         run: sudo chown -R runner:runner .
       - name: Run Snyk to check for vulnerabilities
