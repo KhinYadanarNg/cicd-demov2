@@ -43,12 +43,12 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/dotnet@master 
+        uses: snyk/actions/maven@master 
         continue-on-error: true # To make sure that SARIF upload gets called
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --sarif-file-output=snyk.sarif --file=./Orso.Arpa.Api.sln --severity-threshold=medium
+          args: --sarif-file-output=snyk.sarif --file=./cicd-demov2 --severity-threshold=medium
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
         with:
