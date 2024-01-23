@@ -35,31 +35,55 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KhinYadanarNg_cicd-demov2
-      
-      - uses: actions/checkout@master
-      - env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh api https://github.com/KhinYadanarNg/cicd-demov2
+
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Clean
+        run: dotnet clean ./Orso.Arpa.Api.sln --configuration Release && dotnet nuget locals all --clear
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/maven@master
-        continue-on-error: true # To make sure that SARIF upload gets called 
+        uses: snyk/actions/dotnet@master 
+        continue-on-error: true # To make sure that SARIF upload gets called
         env:
-            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-            args: --sarif-file-output=snyk.sarif --file=./Orso.Arpa.Api.sln --severity-threshold=medium
-      - name: Debug
-        run: |
-         echo "GitHub token: ${{ secrets.GITHUB_TOKEN }}"
-         echo "Current directory: $(pwd)"
-         echo "List files in the current directory: $(ls)"
+          args: --sarif-file-output=snyk.sarif --file=./Orso.Arpa.Api.sln --severity-threshold=medium
       - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v2 
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        uses: github/codeql-action/upload-sarif@v3
         with:
-            sarif_file: snyk.sarif
+          sarif_file: snyk.sarif
+      
+      # - uses: actions/checkout@master
+      # - env:
+      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     gh api https://github.com/KhinYadanarNg/cicd-demov2
+      # - name: Run Snyk to check for vulnerabilities
+      #   uses: snyk/actions/maven@master
+      #   continue-on-error: true # To make sure that SARIF upload gets called 
+      #   env:
+      #       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
+      #   with:
+      #       args: --sarif-file-output=snyk.sarif --file=./Orso.Arpa.Api.sln --severity-threshold=medium
+      # - name: Debug
+      #   run: |
+      #    echo "GitHub token: ${{ secrets.GITHUB_TOKEN }}"
+      #    echo "Current directory: $(pwd)"
+      #    echo "List files in the current directory: $(ls)"
+      # - name: Upload result to GitHub Code Scanning
+      #   uses: github/codeql-action/upload-sarif@v2 
+      #   env:
+      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      #   with:
+      #       sarif_file: snyk.sarif
 
   
   
