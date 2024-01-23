@@ -37,8 +37,6 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KhinYadanarNg_cicd-demov2
 
       - uses: actions/checkout@v4
-      - name: Run npm install
-        run: npm install
       # Runs the ESlint code analysis
       - name: Run ESLint
         # eslint exits 1 if it finds anything to report
