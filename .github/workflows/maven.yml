@@ -86,16 +86,20 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Build and Generate Artifact
+         run:|
+         mkdir -p home/runner/work/cicd-demo/cicd-demo
+         touch home/runner/work/cicd-demo/cicd-demo/frktest.txt
       - name: Upload JAR
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: target/cicd-demov2-0.0.1-SNAPSHOT.jar
+          path: home/runner/work/cicd-demo/cicd-demo/frktest.txt
       - name: Download JAR
         uses: actions/download-artifact@v2
         with:
           name: artifact
-          path: target/cicd-demov2-0.0.1-SNAPSHOT.jar
+          path: home/runner/work/cicd-demo/cicd-demo/frktest.txt
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v13
         with:
