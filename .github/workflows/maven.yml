@@ -86,10 +86,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Build and Generate Artifact
-         run:|
-         mkdir -p home/runner/work/cicd-demo/cicd-demo
-         touch home/runner/work/cicd-demo/cicd-demo/firktest.txt
       - name: Upload JAR
         uses: actions/upload-artifact@v2
         with:
