@@ -91,6 +91,9 @@ jobs:
         with:
           name: artifact
           path: home/runner/work/cicd-demov2/cicd-demov2/firktest.txt
+      - name: List Files
+        run: |
+         ls -R  home/runner/work/cicd-demov2/cicd-demov2
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v13
         with:
