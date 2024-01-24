@@ -94,7 +94,7 @@ jobs:
       - name: List Files
         run: |
           # Replace "path/to/check" with the path you want to check
-          ls -R target/
+          ls -R target
       - name: Download JAR
         uses: actions/download-artifact@v2
         with:
