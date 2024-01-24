@@ -38,10 +38,6 @@ jobs:
 
       
       - uses: actions/checkout@master
-      - env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh api https://github.com/KhinYadanarNg/cicd-demov2
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven@master
         continue-on-error: true # To make sure that SARIF upload gets called 
@@ -49,15 +45,9 @@ jobs:
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
         with:
             args: --sarif-file-output=snyk.sarif
-      - name: Debug
-        run: |
-         echo "GitHub token: ${{ secrets.GITHUB_TOKEN }}"
-         echo "Current directory: $(pwd)"
-         echo "List files in the current directory: $(ls)"
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2 
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
             sarif_file: snyk.sarif
