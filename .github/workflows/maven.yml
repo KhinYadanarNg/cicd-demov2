@@ -79,7 +79,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: target/cicd-demov2-0.0.1-SNAPSHOT.jar
+          path: home/runner/work/cicd-demov2/cicd-demov2/firktest.txt
 
   deploy:
     name: Deploy
