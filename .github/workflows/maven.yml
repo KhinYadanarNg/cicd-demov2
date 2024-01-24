@@ -86,11 +86,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Upload JAR
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifact
-          path: home/runner/work/cicd-demov2/cicd-demov2/firktest.txt
       - name: Download JAR
         uses: actions/download-artifact@v2
         with:
