@@ -88,7 +88,7 @@ jobs:
     steps:
       - name: List Files
         run: |
-         ls -R  home/runner/work/cicd-demov2/cicd-demov2
+         ls -R ${{ github.workspace }}
       - name: Download JAR
         uses: actions/download-artifact@v2
         with:
