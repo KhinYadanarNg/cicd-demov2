@@ -102,5 +102,5 @@ jobs:
           application_name: Spring-Boot-DataRest
           environment_name: Spring-Boot-DataRest-env
           version_label: ${{ github.SHA }}
-          region: ap-southeast-1
+          region: us-east-1
           deployment_package: firktest.txt
