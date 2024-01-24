@@ -39,7 +39,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
       - name: Add execute permission
-        run: chmod +x ./mvnw
+        run: chmod +r snyk.sarif
       # - name: Run mvnw script
       #   run: bash ./mvnw
       # - name: Run mvnw script
