@@ -45,7 +45,7 @@ jobs:
         uses: snyk/actions/maven@master
         continue-on-error: true # To make sure that SARIF upload gets called
         env:
-          SNYK_API_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       #   with:
       #     args: --sarif-file-output=snyk.sarif
