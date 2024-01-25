@@ -103,4 +103,4 @@ jobs:
           environment_name: Spring-Boot-DataRest-env
           version_label: ${{ github.SHA }}
           region: us-east-1
-          deployment_package: ${{ github.workspace }}/firktest.txt
+ 
