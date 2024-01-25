@@ -93,6 +93,8 @@ jobs:
         with:
           name: artifact
           path: ${{ github.workspace }}/firktest.txt
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x '*.git*'
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v13
         with:
@@ -103,4 +105,5 @@ jobs:
           environment_name: Spring-Boot-DataRest-env
           version_label: ${{ github.SHA }}
           region: us-east-1
+          deployment_package: deploy.zip
  
