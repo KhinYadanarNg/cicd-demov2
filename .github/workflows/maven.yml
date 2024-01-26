@@ -102,5 +102,5 @@ jobs:
           environment_name: Spring-Boot-DataRest-env
           version_label: ${{ github.SHA }}
           region: us-east-1
-          deployment_package: d13revision-0.0.1-SNAPSHOT.jar
+          deployment_package: d13revision-0.0.1-SNAPSHOT.jar 
  
