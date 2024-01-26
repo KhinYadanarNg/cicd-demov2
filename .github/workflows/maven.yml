@@ -79,7 +79,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: ${{ github.workspace }}/firktest.txt
+          path: target/cicd-demo-0.0.1-SNAPSHOT.jar
 
   deploy:
     name: Deploy
@@ -92,9 +92,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: artifact
-          path: ${{ github.workspace }}/firktest.txt
-      - name: Generate deployment package
-        run: zip -r deploy.zip . -x '*.git*'
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v13
         with:
